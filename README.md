@@ -3,6 +3,19 @@
 ## Sobre o Projeto
 Sua missão é testar a API de piadas que a equipe de desenvolvimento acaba de lançar. Essa API fornece piadas aleatórias com um setup e uma punchline. Sua tarefa é garantir que tudo esteja funcionando corretamente.
 
+### Endpoint Base: 
+https://official-joke-api.appspot.com/random_joke
+### Exemplo de Resposta:
+```json
+{
+  "type": "general",
+  "setup": "How good are you at Power Point?",
+  "punchline": "I Excel at it.",
+  "id": 128
+}
+```
+
+
 ## O que você precisa fazer
 
 ### Planejamento dos Testes
