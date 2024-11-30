@@ -1,0 +1,17 @@
+{
+  "name": "qa-challenge",
+  "version": "1.0.0",
+  "description": "Sua missão é testar a API de piadas que a equipe de desenvolvimento acaba de lançar. Essa API fornece piadas aleatórias com um setup e uma punchline. Sua tarefa é garantir que tudo esteja funcionando corretamente.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.16.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-plugin-api": "^2.11.2"
+  }
+}
