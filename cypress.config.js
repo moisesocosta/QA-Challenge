@@ -1,9 +1,17 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+  e2e:{
+    baseUrl: 'https://official-joke-api.appspot.com',
+  },
+  
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportDir: 'cypress/reports',
+    charts: true,
+    reportPageTitle: 'Relatório de Testes',
+    embeddedScreenshots: true,
+    inlineAssets: true,
   },
 });
+

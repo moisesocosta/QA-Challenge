@@ -4,7 +4,8 @@
   "description": "Sua missão é testar a API de piadas que a equipe de desenvolvimento acaba de lançar. Essa API fornece piadas aleatórias com um setup e uma punchline. Sua tarefa é garantir que tudo esteja funcionando corretamente.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cypress open",
+    "test": "cypress run"
   },
   "keywords": [],
   "author": "",

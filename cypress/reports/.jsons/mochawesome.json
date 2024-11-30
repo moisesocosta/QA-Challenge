@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-11-30T20:04:53.187Z",
+    "end": "2024-11-30T20:04:54.936Z",
+    "duration": 1749,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4e1d1991-a32d-41d2-925a-44636c28cc02",
+      "title": "",
+      "fullFile": "cypress\\e2e\\jokes_random.cy.js",
+      "file": "cypress\\e2e\\jokes_random.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ec62107d-efae-4681-ae08-47fe5df14ace",
+          "title": "Endpoint /jokes/random",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve retornar uma piada válida",
+              "fullTitle": "Endpoint /jokes/random Deve retornar uma piada válida",
+              "timedOut": null,
+              "duration": 1671,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api('/jokes/random').then(({\n  status,\n  body\n}) => {\n  expect(status).to.eq(200);\n  expect(body).to.have.all.keys('type', 'setup', 'punchline', 'id');\n  expect(body.type).to.be.a('string');\n  expect(body.setup).to.be.a('string');\n  expect(body.punchline).to.be.a('string');\n  expect(body.id).to.be.a('number');\n});",
+              "err": {},
+              "uuid": "83076a76-67dd-4e10-b2af-6adb71cd5554",
+              "parentUUID": "ec62107d-efae-4681-ae08-47fe5df14ace",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "83076a76-67dd-4e10-b2af-6adb71cd5554"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1671,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "charts": true,
+        "reportPageTitle": "Relatório de Testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
