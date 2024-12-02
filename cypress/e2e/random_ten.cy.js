@@ -12,4 +12,34 @@ describe('Endpoint /random_ten', () => {
       });
     });
   });
+
+  //Teste de Carga
+  it('Simula 10 requisições simultâneas', () => {
+    const requests = Cypress._.times(10, () => cy.api('/random_ten'));
+    cy.wrap(Promise.all(requests)).then((responses) => {
+      responses.forEach(({ status }) => expect(status).to.eq(200));
+    });
+  });
+
+  //Validação de tipos e formatos
+  it('Valida os tipos de dados em todas as piadas da lista', () => {
+    cy.api('/random_ten').then(({ body }) => {
+      body.forEach((joke) => {
+        expect(joke.id).to.be.a('number');
+        expect(joke.type).to.match(/^(general|programming|knock-knock)$/);
+        expect(joke.setup).to.be.a('string').and.not.be.empty;
+        expect(joke.punchline).to.be.a('string').and.not.be.empty;
+      });
+    });
+  });
+
+  //Teste de Limites
+  it('Garante que nenhuma piada tem campos vazios', () => {
+    cy.api('/random_ten').then(({ body }) => {
+      body.forEach((joke) => {
+        expect(joke.setup.trim()).to.not.be.empty;
+        expect(joke.punchline.trim()).to.not.be.empty;
+      });
+    });
+  });
 });

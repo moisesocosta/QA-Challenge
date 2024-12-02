@@ -9,4 +9,14 @@ describe('Endpoint /jokes/random', () => {
       expect(body.id).to.be.a('number');
     });
   });
+
+  //Validação de tipos e formatos
+  it('Valida os tipos de dados em todas as piadas da lista', () => {
+    cy.api('/jokes/random').then(({ body }) => {
+      expect(body.id).to.be.a('number');
+      expect(body.type).to.be.a('string').and.not.be.empty;
+      expect(body.setup).to.be.a('string').and.not.be.empty;
+      expect(body.punchline).to.be.a('string').and.not.be.empty;
+    });
+  });
 });

@@ -1,0 +1,152 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-12-02T19:53:53.201Z",
+    "end": "2024-12-02T19:54:08.389Z",
+    "duration": 15188,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "39569905-53e4-4f7f-ad9e-d7370daff231",
+      "title": "",
+      "fullFile": "cypress\\e2e\\jokes_ten.cy.js",
+      "file": "cypress\\e2e\\jokes_ten.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fe96f6fc-1e39-47b6-9bce-e77ccc531d2b",
+          "title": "Endpoint /jokes/ten",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve retornar exatamente 10 piadas",
+              "fullTitle": "Endpoint /jokes/ten Deve retornar exatamente 10 piadas",
+              "timedOut": null,
+              "duration": 1425,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api('/jokes/ten').then(({\n  status,\n  body\n}) => {\n  expect(status).to.eq(200);\n  expect(body).to.be.an('array').with.length(10);\n  body.forEach(joke => {\n    expect(joke).to.have.all.keys('type', 'setup', 'punchline', 'id');\n    expect(joke.type).to.be.a('string');\n    expect(joke.setup).to.be.a('string');\n    expect(joke.punchline).to.be.a('string');\n    expect(joke.id).to.be.a('number');\n  });\n});",
+              "err": {},
+              "uuid": "ea1f8cb8-712a-4bf5-bb1d-a055b30f331b",
+              "parentUUID": "fe96f6fc-1e39-47b6-9bce-e77ccc531d2b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Simula 10 requisições simultâneas",
+              "fullTitle": "Endpoint /jokes/ten Simula 10 requisições simultâneas",
+              "timedOut": null,
+              "duration": 11555,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const requests = Cypress._.times(10, () => cy.api('/jokes/ten'));\ncy.wrap(Promise.all(requests)).then(responses => {\n  responses.forEach(({\n    status\n  }) => expect(status).to.eq(200));\n});",
+              "err": {
+                "message": "TypeError: Cannot destructure property 'status' of 'undefined' as it is undefined.",
+                "estack": "TypeError: Cannot destructure property 'status' of 'undefined' as it is undefined.\n    at eval (webpack://qa-challenge/./cypress/e2e/jokes_ten.cy.js:20:27)\n    at Array.forEach (<anonymous>)\n    at Context.eval (webpack://qa-challenge/./cypress/e2e/jokes_ten.cy.js:20:16)",
+                "diff": null
+              },
+              "uuid": "f1a031c6-7971-4363-a889-373c0c73a346",
+              "parentUUID": "fe96f6fc-1e39-47b6-9bce-e77ccc531d2b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Valida os tipos de dados em todas as piadas da lista",
+              "fullTitle": "Endpoint /jokes/ten Valida os tipos de dados em todas as piadas da lista",
+              "timedOut": null,
+              "duration": 1321,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api('/jokes/ten').then(({\n  body\n}) => {\n  body.forEach(joke => {\n    expect(joke.id).to.be.a('number');\n    expect(joke.type).to.match(/^(general|programming|knock-knock)$/);\n    expect(joke.setup).to.be.a('string').and.not.be.empty;\n    expect(joke.punchline).to.be.a('string').and.not.be.empty;\n  });\n});",
+              "err": {},
+              "uuid": "4e283f13-9ef8-411e-9fc2-eb60d9eeb74a",
+              "parentUUID": "fe96f6fc-1e39-47b6-9bce-e77ccc531d2b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ea1f8cb8-712a-4bf5-bb1d-a055b30f331b",
+            "4e283f13-9ef8-411e-9fc2-eb60d9eeb74a"
+          ],
+          "failures": [
+            "f1a031c6-7971-4363-a889-373c0c73a346"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14301,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\reports\\.jsons",
+        "charts": true,
+        "reportPageTitle": "Relatório de Testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
