@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2024-11-30T20:04:53.187Z",
-    "end": "2024-11-30T20:04:54.936Z",
-    "duration": 1749,
-    "testsRegistered": 1,
+    "start": "2024-12-03T12:25:35.559Z",
+    "end": "2024-12-03T12:25:38.487Z",
+    "duration": 2928,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "4e1d1991-a32d-41d2-925a-44636c28cc02",
+      "uuid": "c4f10b81-7bc7-4b7f-acd0-38d13cea0bd9",
       "title": "",
       "fullFile": "cypress\\e2e\\jokes_random.cy.js",
       "file": "cypress\\e2e\\jokes_random.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "ec62107d-efae-4681-ae08-47fe5df14ace",
+          "uuid": "b7f7dd08-ec5f-420b-961b-1bdc45cf087e",
           "title": "Endpoint /jokes/random",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Deve retornar uma piada válida",
               "fullTitle": "Endpoint /jokes/random Deve retornar uma piada válida",
               "timedOut": null,
-              "duration": 1671,
+              "duration": 1608,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,39 @@
               "context": null,
               "code": "cy.api('/jokes/random').then(({\n  status,\n  body\n}) => {\n  expect(status).to.eq(200);\n  expect(body).to.have.all.keys('type', 'setup', 'punchline', 'id');\n  expect(body.type).to.be.a('string');\n  expect(body.setup).to.be.a('string');\n  expect(body.punchline).to.be.a('string');\n  expect(body.id).to.be.a('number');\n});",
               "err": {},
-              "uuid": "83076a76-67dd-4e10-b2af-6adb71cd5554",
-              "parentUUID": "ec62107d-efae-4681-ae08-47fe5df14ace",
+              "uuid": "2a6a57be-7b37-44b5-b01d-71bf660874f2",
+              "parentUUID": "b7f7dd08-ec5f-420b-961b-1bdc45cf087e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Valida os tipos de dados em todas as piadas da lista",
+              "fullTitle": "Endpoint /jokes/random Valida os tipos de dados em todas as piadas da lista",
+              "timedOut": null,
+              "duration": 1144,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api('/jokes/random').then(({\n  body\n}) => {\n  expect(body.id).to.be.a('number');\n  expect(body.type).to.be.a('string').and.not.be.empty;\n  expect(body.setup).to.be.a('string').and.not.be.empty;\n  expect(body.punchline).to.be.a('string').and.not.be.empty;\n});",
+              "err": {},
+              "uuid": "71189804-0ca2-4132-aabf-ea7518d09479",
+              "parentUUID": "b7f7dd08-ec5f-420b-961b-1bdc45cf087e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "83076a76-67dd-4e10-b2af-6adb71cd5554"
+            "2a6a57be-7b37-44b5-b01d-71bf660874f2",
+            "71189804-0ca2-4132-aabf-ea7518d09479"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1671,
+          "duration": 2752,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

@@ -14,8 +14,15 @@ describe('Endpoint /random_joke', () => {
   it('Simula 10 requisições simultâneas', () => {
     const requests = Cypress._.times(10, () => cy.api('/random_joke'));
     cy.wrap(Promise.all(requests)).then((responses) => {
-      responses.forEach(({ status }) => expect(status).to.eq(200));
-    });
+      // Verifica se todas as respostas não são nulas
+      responses.forEach((response, index) => {
+        expect(response, `Requisição ${index + 1} falhou`).to.not.be.null;
+        if (response) {
+          const { status } = response;
+          expect(status).to.eq(200);
+        }
+      });
+    });  
   });
 
   //Validação de tipos e formatos
@@ -48,14 +55,18 @@ describe('Endpoint /random_joke', () => {
   //Distribuição Estatística
   it('Verifica a distribuição dos tipos de piada', () => {
     const counts = { general: 0, programming: 0, 'knock-knock': 0 };
-
-    Cypress._.times(100, () => {
+  
+    Cypress._.times(100, (i) => {
+      cy.wait(50 * i);
       cy.api('/random_joke').then(({ body }) => {
         counts[body.type] += 1;
       });
-    }).then(() => {
+    });
+  
+    cy.wrap(null).then(() => {
       cy.log('Distribuição:', counts);
       expect(Object.values(counts)).to.satisfy((arr) => arr.some((count) => count > 0));
     });
   });
+    
 });

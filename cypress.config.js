@@ -4,7 +4,7 @@ module.exports = defineConfig({
   e2e:{
     baseUrl: 'https://official-joke-api.appspot.com',
   },
-  
+  video: true,
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     reportDir: 'cypress/reports',

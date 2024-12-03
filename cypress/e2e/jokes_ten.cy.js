@@ -17,8 +17,15 @@ describe('Endpoint /jokes/ten', () => {
   it('Simula 10 requisições simultâneas', () => {
     const requests = Cypress._.times(10, () => cy.api('/jokes/ten'));
     cy.wrap(Promise.all(requests)).then((responses) => {
-      responses.forEach(({ status }) => expect(status).to.eq(200));
-    });
+      // Verifica se todas as respostas não são nulas
+      responses.forEach((response, index) => {
+        expect(response, `Requisição ${index + 1} falhou`).to.not.be.null;
+        if (response) {
+          const { status } = response;
+          expect(status).to.eq(200);
+        }
+      });
+    });  
   });
 
   //Validação de tipos e formatos
